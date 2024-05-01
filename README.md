@@ -16,7 +16,7 @@ NOTE2: The Gun Hall Effect sensor's **MUST** be precisely positioned to feedback
 ![ESP32 Wiring](https://github.com/bionicbone/AirWolf_Cell_Guns_Rockets/blob/master/ESP32%20Wiring%20Diagram.jpg)
 
 
-**Setting the Rx Activation Zone**
+**Setting the Rx Activation Zone**  
 In the below code, the guns are activated when the Tx/Rx signal is between 1050 and 1450 
 ```
 // Rx Control
@@ -25,7 +25,7 @@ const uint8_t   rxControl_GunsActiveSpot = 200;           // PWM Signal Activati
 ```
 
 
-**Setting up the Servo Parameters**
+**Setting up the Servo Parameters**  
 NOTE: Read the comments on the right for important information  
 The Nacelle servo position can be precisely set using the Min/Max ServoPosition constants  
 TimeOut constants are to stop the servos burning out if they do not reach the desired position in x milliseconds, they can be altered but consider the consequences  

@@ -94,6 +94,7 @@ void loop() {
         NacelleMovement(EXTEND);
         // Set up a safety timer for nacelle_TimeOut ms, just in case
         unsigned long timeOut = millis() + nacelle_TimeOut;
+        // TODO - When both right and left are connected the code the while statement to enssure both are in the correct position or time out.
         while (digitalRead(leftNacelle_HallEffectOutPin) != LOW && digitalRead(rightNacelle_HallEffectOutPin) != LOW && millis() <= timeOut);
         if (millis() >= timeOut) {
           Serial.println("TIMEOUT");
@@ -111,6 +112,7 @@ void loop() {
         GunsMovement(RETRACT);
         // Set up a safety timer for guns_TimeOut ms, just in case
         unsigned long timeOut = millis() + guns_TimeOut;
+        // TODO - When both right and left are connected the code the while statement to enssure both are in the correct position or time out.
         while (digitalRead(leftGuns_HallEffectInPin) != LOW && digitalRead(rightGuns_HallEffectInPin) != LOW && millis() <= timeOut);
         if (millis() >= timeOut) {
           Serial.println("TIMEOUT");
@@ -130,15 +132,11 @@ void NacelleMovement(bool direction) {
     Serial.println("Nacelle's Extend");
     ServoDriver.ESC1_set_us(nacelle_MaxServoPosition);
     ServoDriver.ESC3_set_us(nacelle_MaxServoPosition);
-    Serial.printf(" Left Nacelle us = %d, Out Mag = %d\n", nacelle_MaxServoPosition, digitalRead(leftNacelle_HallEffectOutPin));
-    Serial.printf("Right Nacelle us = %d, Out Mag = %d\n", nacelle_MaxServoPosition, digitalRead(rightNacelle_HallEffectOutPin));
   }
   else {
     Serial.println("Nacelle's Retract");
     ServoDriver.ESC1_set_us(nacelle_MinServoPosition);
     ServoDriver.ESC3_set_us(nacelle_MinServoPosition);
-    Serial.printf(" Left Nacelle us = %d, In Mag = %d\n", nacelle_MinServoPosition, digitalRead(leftNacelle_HallEffectInPin));
-    Serial.printf("Right Nacelle us = %d, In Mag = %d\n", nacelle_MinServoPosition, digitalRead(rightNacelle_HallEffectInPin));
   }
 }
 
@@ -160,6 +158,7 @@ void GunsMovement(bool direction) {
   if (direction == EXTEND) {
     Serial.println("Gun's Extend");
     uint16_t usGuns = guns_Stopped;
+    // TODO - When both right and left are connected the code the while statement to enssure both are in the correct position or time out.
     while (digitalRead(leftGuns_HallEffectOutPin) != LOW && digitalRead(rightGuns_HallEffectOutPin) != LOW && millis() <= timeOut) {
       ServoDriver.ESC2_set_us(guns_Extend);
       ServoDriver.ESC4_set_us(guns_Extend);
@@ -168,6 +167,7 @@ void GunsMovement(bool direction) {
   else {
     Serial.println("Gun's Retract");
     uint16_t usGuns = guns_Stopped;
+    // TODO - When both right and left are connected the code the while statement to enssure both are in the correct position or time out.
     while (digitalRead(leftGuns_HallEffectInPin) != LOW && digitalRead(rightGuns_HallEffectInPin) != LOW && millis() <= timeOut) {
       ServoDriver.ESC2_set_us(guns_Retract);
       ServoDriver.ESC4_set_us(guns_Retract);

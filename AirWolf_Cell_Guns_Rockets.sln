@@ -5,12 +5,12 @@ VisualStudioVersion = 16.0.34729.46
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AirWolf_Cell_Guns_Rockets", "AirWolf_Cell_Guns_Rockets.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESP32_ESC_High_Resolution_Driver-0.0.0", "Libraries\ESP32_ESC_High_Resolution_Driver\0.0.0\ESP32_ESC_High_Resolution_Driver\ESP32_ESC_High_Resolution_Driver-0.0.0.vcxitems", "{0622DE0A-1193-4AED-BE77-5C94F160CCAB}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ESP32_ESC_High_Resolution_Driver-0.0.0", "Libraries\ESP32_ESC_High_Resolution_Driver\0.0.0\ESP32_ESC_High_Resolution_Driver\ESP32_ESC_High_Resolution_Driver-0.0.0.vcxitems", "{D14D315E-F10C-42FC-9AD0-20FE73DD149E}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Libraries\ESP32_ESC_High_Resolution_Driver\0.0.0\ESP32_ESC_High_Resolution_Driver\ESP32_ESC_High_Resolution_Driver-0.0.0.vcxitems*{0622de0a-1193-4aed-be77-5c94f160ccab}*SharedItemsImports = 9
 		Libraries\ESP32_ESC_High_Resolution_Driver\0.0.0\ESP32_ESC_High_Resolution_Driver\ESP32_ESC_High_Resolution_Driver-0.0.0.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		Libraries\ESP32_ESC_High_Resolution_Driver\0.0.0\ESP32_ESC_High_Resolution_Driver\ESP32_ESC_High_Resolution_Driver-0.0.0.vcxitems*{d14d315e-f10c-42fc-9ad0-20fe73dd149e}*SharedItemsImports = 9
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86

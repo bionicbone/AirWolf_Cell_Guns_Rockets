@@ -19,7 +19,7 @@ bool gunsPosition = RETRACT;
 
 // Rx Control
 uint16_t        rxControl_Value = 0;                      // Last read PWM value from the Rx in us
-const uint16_t  rxControl_GunsActive = 1250;              // PWM Signal Activation Value in us
+const uint16_t  rxControl_GunsActive = 1500;              // PWM Signal Activation Value in us
 const uint8_t   rxControl_GunsActiveSpot = 200;           // PWM Signal Activation + - Spot in us 100-255 (100 absolute minimum)
 // Dual Side Variables
 const uint8_t   nacelle_Speed = 15;                       // 1-15 with 1 slowest and 15 fastest, too high and the servo will not keep up with the updates and not complete the full motion, or have irregular stopping itions  !!
@@ -30,7 +30,7 @@ const uint16_t  guns_TimeOut = 2500;                      // after x ms of wait 
 const uint16_t  guns_Retract = 1000;                      // 1000 - 1200,  1000 fastest speed in - guns_Speed
 const uint16_t  guns_Stopped = 1475;                      // may need to adjust to be central of any movement
 const uint16_t  guns_Extend = 2000;                       // 1350 - 1550, 1550 fastest speed out + guns_Speed
-const uint8_t   led_BrightnessPWM = 150;                  // 0 - 255 highier number brighter
+const uint8_t   led_BrightnessPWM = 50;                  // 0 - 255 highier number brighter
 // Rx PWM Pin
 const uint8_t   rxControl_Pin = 34;                       // PWM Signal from an Rx Channel (Not SBUS)                                                          
 // Left Side ESP32 Pins                                                         
@@ -94,33 +94,33 @@ void loop() {
         NacelleMovement(EXTEND);
         // Set up a safety timer for nacelle_TimeOut ms, just in case
         unsigned long timeOut = millis() + nacelle_TimeOut;
-        // TODO - When both right and left are connected the code the while statement to enssure both are in the correct position or time out.
+        // TODO - When both right and left are connected the code the while statement to ensure both are in the correct position or time out.
         while (digitalRead(leftNacelle_HallEffectOutPin) != LOW && digitalRead(rightNacelle_HallEffectOutPin) != LOW && millis() <= timeOut);
         if (millis() >= timeOut) {
-          Serial.println("TIMEOUT");
+          Serial.println("NECELLE TIMEOUT");
         }
         // Only extend the guns if the nacelle opened successfully
         else {                    
-          LedControl(true);
           GunsMovement(EXTEND);
+          LedControl(true);
         }
       }
     }
     else {
       //ServoDriver.ESC1_set_us(1000);
       if (gunsPosition == EXTEND) {
+        LedControl(false);
         GunsMovement(RETRACT);
         // Set up a safety timer for guns_TimeOut ms, just in case
         unsigned long timeOut = millis() + guns_TimeOut;
         // TODO - When both right and left are connected the code the while statement to enssure both are in the correct position or time out.
         while (digitalRead(leftGuns_HallEffectInPin) != LOW && digitalRead(rightGuns_HallEffectInPin) != LOW && millis() <= timeOut);
         if (millis() >= timeOut) {
-          Serial.println("TIMEOUT");
+          Serial.println("GUNS TIMEOUT");
         }
         // Only close the nacelle if the guns retracted successfully
         else {                  
           NacelleMovement(RETRACT);
-          LedControl(false);
         }
       }
     }
